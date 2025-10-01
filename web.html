@@ -1,0 +1,496 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Talitha Dalilah Difa — Kapita Selekta (RASP)</title>
+  <meta name="description" content="Portfolio Talitha — Business Strategic Plan, Analisis SWOT, Porter, SWEBOK, dan filosofi Open Source.">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg-dark:#071019;
+      --panel:#0e2233;
+      --accent:#66fcf1;
+      --accent-2:#7dd3fc;
+      --text:#e6eef6;
+      --muted:#9aa8b7;
+      --glass: rgba(255,255,255,0.03);
+      --radius:16px;
+      --maxw:900px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:"Poppins",system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;color:var(--text);background:var(--bg-dark);-webkit-font-smoothing:antialiased}
+    /* ===== Starry Night background (multi-layer + twinkle) ===== */
+    body{
+      background:
+        radial-gradient(white, rgba(255,255,255,.05) 1px, transparent 60px),
+        radial-gradient(white, rgba(255,255,255,.03) 1px, transparent 40px),
+        radial-gradient(circle at 25% 60%, rgba(102,252,241,0.03) 0%, transparent 50%),
+        radial-gradient(circle at 75% 30%, rgba(125,211,252,0.04) 0%, transparent 60%),
+        linear-gradient(180deg,#04101a 0%, #071220 35%, #031320 100%);
+      background-size:750px 750px, 350px 350px, 100% 100%, 100% 100%, auto;
+      background-position: 0 0, 140px 80px, 0 0, 0 0, 0 0;
+      animation: moveStars 18s linear infinite;
+    }
+    @keyframes moveStars{
+      from{background-position:0 0, 140px 80px, 0 0, 0 0, 0 0}
+      to{background-position:-750px 0, -350px 80px, 0 0, 0 0, 0 0}
+    }
+    /* twinkle overlay */
+    .twinkle{
+      pointer-events:none; position:fixed; inset:0; z-index:0;
+      background-image:
+        radial-gradient(circle at 10% 20%, rgba(255,255,255,0.9) 0px, rgba(255,255,255,0.0) 2px),
+        radial-gradient(circle at 70% 40%, rgba(255,255,255,0.8) 0px, rgba(255,255,255,0.0) 1.6px),
+        radial-gradient(circle at 30% 80%, rgba(255,255,255,0.7) 0px, rgba(255,255,255,0.0) 2px),
+        radial-gradient(circle at 85% 15%, rgba(102,252,241,0.6) 0px, rgba(102,252,241,0.0) 2.5px),
+        radial-gradient(circle at 15% 65%, rgba(125,211,252,0.5) 0px, rgba(125,211,252,0.0) 2px),
+        radial-gradient(circle at 50% 50%, rgba(255,255,255,0.4) 0px, rgba(255,255,255,0.0) 1.5px),
+        radial-gradient(circle at 90% 75%, rgba(255,255,255,0.6) 0px, rgba(255,255,255,0.0) 1.8px);
+      background-repeat:no-repeat;
+      animation: twinkle 4.2s ease-in-out infinite;
+      mix-blend-mode:screen;
+      opacity:.6;
+    }
+    @keyframes twinkle{
+      0%{opacity:.3;transform:scale(1)}
+      50%{opacity:.9;transform:scale(1.05)}
+      100%{opacity:.3;transform:scale(1)}
+    }
+    
+    /* Shooting stars */
+    .shooting-star{
+      position:fixed;
+      width:2px;
+      height:2px;
+      background:white;
+      border-radius:50%;
+      box-shadow:0 0 10px 2px rgba(255,255,255,0.8);
+      animation:shoot 3s linear infinite;
+      opacity:0;
+      pointer-events:none;
+    }
+    .shooting-star:nth-child(1){top:10%;left:20%;animation-delay:0s;animation-duration:2.5s}
+    .shooting-star:nth-child(2){top:30%;left:60%;animation-delay:1.2s;animation-duration:3s}
+    .shooting-star:nth-child(3){top:50%;left:80%;animation-delay:2.5s;animation-duration:2.8s}
+    .shooting-star:nth-child(4){top:70%;left:30%;animation-delay:4s;animation-duration:3.2s}
+    .shooting-star:nth-child(5){top:20%;left:90%;animation-delay:5.5s;animation-duration:2.6s}
+    
+    @keyframes shoot{
+      0%{transform:translateX(0) translateY(0);opacity:1}
+      70%{opacity:1}
+      100%{transform:translateX(-300px) translateY(300px);opacity:0}
+    }
+    
+    /* Floating particles */
+    .particles{
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      z-index:0;
+    }
+    .particle{
+      position:absolute;
+      width:3px;
+      height:3px;
+      background:rgba(102,252,241,0.4);
+      border-radius:50%;
+      animation:float 20s infinite ease-in-out;
+    }
+    .particle:nth-child(1){left:10%;animation-delay:0s;animation-duration:18s}
+    .particle:nth-child(2){left:25%;animation-delay:2s;animation-duration:22s}
+    .particle:nth-child(3){left:45%;animation-delay:4s;animation-duration:20s}
+    .particle:nth-child(4){left:65%;animation-delay:1s;animation-duration:25s}
+    .particle:nth-child(5){left:80%;animation-delay:3s;animation-duration:19s}
+    .particle:nth-child(6){left:35%;animation-delay:5s;animation-duration:23s}
+    
+    @keyframes float{
+      0%{transform:translateY(100vh) scale(0);opacity:0}
+      10%{opacity:0.6}
+      90%{opacity:0.6}
+      100%{transform:translateY(-100px) scale(1);opacity:0}
+    }
+
+    /* Page layout */
+    header{max-width:var(--maxw);margin:32px auto 12px;padding:6px 18px;display:flex;align-items:center;gap:18px;z-index:10;position:relative}
+    .brand{display:flex;align-items:center;gap:14px}
+    .logo{
+      width:64px;height:64px;border-radius:12px;background:linear-gradient(135deg,var(--accent),var(--accent-2));
+      display:flex;align-items:center;justify-content:center;font-weight:800;color:#042025;font-size:20px;box-shadow:0 10px 40px rgba(2,6,23,0.6);
+      animation:pulse 3s ease-in-out infinite;
+    }
+    @keyframes pulse{
+      0%{box-shadow:0 10px 40px rgba(2,6,23,0.6),0 0 0 0 rgba(102,252,241,0.4)}
+      50%{box-shadow:0 10px 40px rgba(2,6,23,0.6),0 0 0 10px rgba(102,252,241,0)}
+      100%{box-shadow:0 10px 40px rgba(2,6,23,0.6),0 0 0 0 rgba(102,252,241,0.4)}
+    }
+    .brand h1{margin:0;font-size:1.15rem}
+    .brand p{margin:0;font-size:.85rem;color:var(--muted)}
+
+    nav{margin-left:auto;background:rgba(255,255,255,0.02);padding:8px;border-radius:999px;display:flex;gap:8px;align-items:center;box-shadow:0 6px 18px rgba(0,0,0,0.45)}
+    nav a{color:var(--muted);text-decoration:none;padding:8px 12px;border-radius:999px;font-weight:600;font-size:0.9rem;transition:all .18s}
+    nav a:hover{color:var(--bg-dark);background:linear-gradient(90deg,var(--accent),var(--accent-2));transform:translateY(-3px)}
+
+    main{max-width:var(--maxw);margin:18px auto;padding:28px;position:relative;z-index:1}
+    @media(max-width:980px){main{padding:18px}nav{display:none}}
+
+    .panel{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.03)); border-radius:var(--radius);padding:22px;border:1px solid rgba(255,255,255,0.03);box-shadow:0 12px 40px rgba(2,6,23,0.5);opacity:0;transform:translateY(16px);transition:all .8s ease-out;margin-bottom:28px;backdrop-filter:blur(10px)}
+    .panel.show{opacity:1;transform:none}
+    .panel:hover{transform:translateY(-4px);box-shadow:0 16px 50px rgba(2,6,23,0.7),0 0 30px rgba(102,252,241,0.08);border-color:rgba(102,252,241,0.15)}
+    h2{margin:0 0 12px 0;color:var(--accent);font-size:1.6rem;text-shadow:0 3px 20px rgba(102,252,241,0.06);animation:glow 3s ease-in-out infinite alternate}
+    @keyframes glow{
+      from{text-shadow:0 3px 20px rgba(102,252,241,0.06),0 0 10px rgba(102,252,241,0.1)}
+      to{text-shadow:0 3px 25px rgba(102,252,241,0.15),0 0 20px rgba(102,252,241,0.2)}
+    }
+    h3{margin:18px 0 8px;color:var(--accent-2);font-size:1.05rem}
+    p{margin:0 0 12px;color:var(--text);line-height:1.6}
+    .muted{color:var(--muted);font-size:0.95rem}
+
+    /* hero / about */
+    .hero{display:flex;gap:18px;align-items:center;flex-wrap:wrap}
+    .photo{width:150px;height:150px;border-radius:18px;overflow:hidden;border:4px solid rgba(102,252,241,0.12);box-shadow:0 24px 60px rgba(2,6,23,0.6);flex-shrink:0;background:linear-gradient(180deg,#061726,#09313e);display:flex;align-items:center;justify-content:center;font-weight:800;color:var(--accent);font-size:40px;transition:transform .45s cubic-bezier(.2,.9,.3,1)}
+    .photo:hover{transform:translateY(-8px) rotate(-3deg)}
+    .photo img{width:100%;height:100%;object-fit:cover;display:block}
+
+    .roles{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}
+    .pill{background:linear-gradient(90deg, rgba(102,252,241,0.12), rgba(125,211,252,0.06));padding:8px 12px;border-radius:999px;color:var(--accent);font-weight:600;font-size:0.88rem}
+
+    .section-block{margin-bottom:14px;padding:14px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(0,0,0,0.03));border:1px solid rgba(255,255,255,0.02)}
+    .two-col{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    @media(max-width:768px){.two-col{grid-template-columns:1fr}}
+
+    ul{padding-left:18px;margin:8px 0}
+    li{margin:8px 0;color:var(--muted)}
+    ol{padding-left:18px;margin:8px 0}
+
+    .card-compact{padding:18px;border-radius:14px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.02));border:1px solid rgba(255,255,255,0.03);margin-bottom:14px}
+    .meta-item{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+    .meta-item strong{display:block;color:var(--accent-2);min-width:120px}
+    .muted a{color:var(--accent)}
+
+    footer{max-width:var(--maxw);margin:30px auto 80px;color:var(--muted);text-align:center;padding:12px}
+
+    a:focus{outline:3px solid rgba(102,252,241,0.18);outline-offset:4px;border-radius:8px}
+  </style>
+</head>
+<body>
+  <div class="twinkle" aria-hidden="true"></div>
+  
+  <!-- Shooting stars -->
+  <div class="shooting-star"></div>
+  <div class="shooting-star"></div>
+  <div class="shooting-star"></div>
+  <div class="shooting-star"></div>
+  <div class="shooting-star"></div>
+  
+  <!-- Floating particles -->
+  <div class="particles" aria-hidden="true">
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+  </div>
+
+  <header>
+    <div class="brand">
+      <div class="logo" aria-hidden="true">TD</div>
+      <div>
+        <h1>Talitha Dalilah Difa</h1>
+        <p class="muted">2315061012 · S1 Teknik Informatika - Universitas Lampung</p>
+      </div>
+    </div>
+
+    <nav aria-label="Navigasi utama">
+      <a href="#about">Tentang</a>
+      <a href="#kapita">Kapita Selekta</a>
+      <a href="#plan">Rencana</a>
+      <a href="#swot">SWOT</a>
+      <a href="#porter">Porter</a>
+      <a href="#swebok">SWEBOK</a>
+      <a href="#opensource">Open Source</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Tentang Saya -->
+    <section id="about" class="panel" aria-labelledby="about-title">
+      <div class="hero">
+        <div class="photo" role="img" aria-label="Foto Talitha">
+          <img src="Pas Foto Talitha.jpg" alt="Foto Talitha Dalilah Difa" onerror="this.style.display='block';this.parentElement.textContent='TD'">
+        </div>
+
+        <div>
+          <h2 id="about-title">Tentang Saya</h2>
+          <div class="roles">
+            <span class="pill">Frontend & UX</span>
+            <span class="pill">Rekayasa Perangkat Lunak</span>
+          </div>
+
+          <p class="muted">
+            Saya Talitha Dalilah Difa, mahasiswa S1 Teknik Informatika (NPM: 2315061012) di Universitas Lampung.
+            Ketertarikan saya pada antarmuka dan pengalaman pengguna muncul dari keyakinan bahwa teknologi paling
+            efektif ketika dapat dipakai dan dipahami oleh manusia. Portfolio ini adalah dokumentasi rencana strategis
+            saya yang bukan hanya ide, tetapi juga langkah implementasi yang dapat diuji.
+          </p>
+
+          <div class="section-block">
+            <h3>Ringkasan Halaman</h3>
+            <p class="muted">Halaman ini berisi: latar & tujuan, alasan memilih kekuatan pendatar dunia (Frontend & UX), kompetensi kurikulum relevan, pemetaan SWEBOK, judul skripsi/KP yang diusulkan, rencana implementasi, analisis SWOT lengkap, analisis Porter, rekomendasi open-source, dan refleksi akhir.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Kapita Selekta -->
+    <section id="kapita" class="panel" aria-labelledby="kapita-title">
+      <h2 id="kapita-title">Kapita Selekta</h2>
+
+      <div class="section-block">
+        <h3>Peran Kapita Selekta dalam Pengembangan Akademik</h3>
+        <p>
+          Kapita Selekta adalah mata kuliah yang memberi kesempatan bagi mahasiswa untuk menelaah isu-isu terkini
+          yang relevan dengan bidang studi. Karena sifatnya yang selektif dan tematik, Kapita Selekta mendorong
+          mahasiswa untuk berpikir lintas-disiplin: menghubungkan keterampilan teknis, metodologi penelitian, dan
+          strategi implementasi nyata. Di konteks saya, Kapita Selekta berfungsi sebagai laboratorium strategi tempat saya
+          merancang rencana yang siap diuji melalui seminar maupun implementasi praktis.
+        </p>
+      </div>
+
+      <div class="section-block">
+        <h3>Mengapa Memilih Frontend & UX?</h3>
+        <p>
+          Pilihan fokus pada <strong>Frontend Development</strong> dan <strong>User Experience (UX)</strong> muncul dari
+          observasi sederhana: semua interaksi pengguna dimulai dari antarmuka. Sebuah sistem pemerintah yang kaya data
+          namun sulit diakses akan gagal memenuhi tujuan transparansi dan layanan publik. Oleh karena itu, bagian
+          antarmuka menjadi prioritas agar data publik menjadi mudah dipahami, dicari, dan dimanfaatkan.
+        </p>
+        <p class="muted">
+          Pendekatan ini menjadikan proyek bukan hanya soal menampilkan informasi, melainkan merancang pengalaman
+          pengguna yang memperkuat tujuan kebijakan publik (mis. keterbukaan informasi).
+        </p>
+      </div>
+
+      <div class="two-col">
+        <div class="section-block">
+          <h3>Tujuan Pembelajaran</h3>
+          <ul>
+            <li>Melatih mahasiswa mengaitkan teori dengan praktik dan kebutuhan pemangku kepentingan.</li>
+            <li>Mengembangkan kemampuan menyusun business plan sederhana berdasar analisis strategis.</li>
+            <li>Menghasilkan artefak yang bisa diuji (prototype, laporan, presentasi seminar).</li>
+            <li>Melatih kemampuan komunikasi teknis pada audiens non-teknis (mis. pemprov, publik).</li>
+          </ul>
+        </div>
+        <div class="section-block">
+          <h3>Keluaran yang Diharapkan</h3>
+          <ul>
+            <li>Rencana judul skripsi/KP yang feasible dan relevan.</li>
+            <li>Desain prototipe antarmuka (Figma atau prototipe HTML/CSS).</li>
+            <li>Analisis SWOT & Porter yang menopang argumen pemilihan solusi.</li>
+            <li>Dokumentasi teknis dan non-teknis (README, panduan pengguna singkat).</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Rencana Strategis lengkap -->
+    <section id="plan" class="panel" aria-labelledby="plan-title">
+      <h2 id="plan-title">Rencana Strategis</h2>
+
+      <div class="section-block">
+        <h3>1. Kekuatan Pendatar Dunia</h3>
+        <p>
+          Kekuatan pendatar dunia yang saya pilih adalah <strong>Transformasi Digital & User Experience (UX) Development</strong>.
+          Transformasi digital mendorong hampir semua sektor untuk menyediakan layanan berbasis web; UX menjadi penentu
+          apakah layanan tersebut dapat diterima dan dipakai oleh publik. Dengan menempatkan UX di pusat strategi,
+          tujuan proyek ini adalah membuat antarmuka informasi publik yang cepat, mudah dinavigasi, dan dapat diakses.
+        </p>
+      </div>
+
+      <div class="section-block">
+        <h3>2. Kompetensi Kurikulum PSTI yang Relevan</h3>
+        <p class="muted">Berdasarkan kurikulum S1 Teknik Informatika (UNILA), kompetensi yang mendukung proyek ini antara lain:</p>
+        <ul>
+          <li><strong>Pemrograman Web & Praktikum Web</strong> — dasar HTML, CSS, JavaScript, PHP.</li>
+          <li><strong>Web Framework</strong> — penggunaan React, Vue, atau Angular untuk SPA yang modular.</li>
+          <li><strong>Agile Software Development</strong> — manajemen proyek iteratif, Sprint 2 minggu.</li>
+          <li><strong>Software Testing & QA</strong> — pengujian responsif dan usability testing.</li>
+          <li><strong>User Experience (UX)</strong> — desain interaksi dan evaluasi kualitatif pengguna.</li>
+          <li><strong>Proyek TI & Skripsi</strong> — tempat mengimplementasikan hasil penelitian atau KP.</li>
+        </ul>
+      </div>
+
+      <div class="section-block">
+        <h3>3. SWEBOK — Area yang Digunakan</h3>
+        <p class="muted">Area SWEBOK yang menjadi landasan teknis dan manajerial:</p>
+        <ul>
+          <li><strong>Software Requirements:</strong> identifikasi kebutuhan warga & pemerintahan; definisi use-case (berita, agenda, dokumen publik, kontak/aduan).</li>
+          <li><strong>Software Design:</strong> arsitektur front-end (SPA), desain komponen, navigasi, dan prototyping (Figma).</li>
+          <li><strong>Software Construction:</strong> implementasi UI (React + Tailwind / CSS modular), integrasi API.</li>
+          <li><strong>Software Testing:</strong> uji responsif, cross-browser, praktik usability testing (kuesioner & observasi).</li>
+          <li><strong>Software Engineering Management:</strong> Agile / Scrum untuk iterasi fitur dan manajemen risiko.</li>
+          <li><strong>Software Quality:</strong> performa (loading time), aksesibilitas (WCAG 2.1), serta sanitasi input untuk security dasar.</li>
+        </ul>
+      </div>
+
+      <div class="section-block">
+        <h3>4. Rencana Judul (Skripsi & Kerja Praktik)</h3>
+        <ul>
+          <li><strong>Judul Skripsi:</strong> Pengembangan Website Informasi Publik Pemprov Lampung Berbasis ReactJS dengan Penerapan UI/UX Modern untuk Mendukung Keterbukaan Informasi Pemerintah.</li>
+          <li><strong>Judul Kerja Praktik:</strong> Implementasi Antarmuka Website Informasi Publik Pemprov Lampung Menggunakan ReactJS dan Tailwind CSS.</li>
+        </ul>
+      </div>
+
+      <div class="section-block">
+        <h3>5. Langkah Implementasi Singkat</h3>
+        <ol style="color:var(--muted);margin-left:18px">
+          <li><strong>Prototyping & User Flows:</strong> buat sketsa layar utama, jalur pengguna (search, baca berita, unduh dokumen).</li>
+          <li><strong>Implementasi Front-end:</strong> struktur komponen React, state management sederhana (context / Redux jika perlu).</li>
+          <li><strong>Integrasi API:</strong> mulai dari mock JSON → endpoint publik (jika tersedia).</li>
+          <li><strong>Testing:</strong> responsif, cross-browser, kuesioner usability pada 5–10 pengguna awal.</li>
+          <li><strong>Deployment & Dokumentasi:</strong> GitHub Pages / Netlify / Vercel + README, LICENSE (MIT direkomendasikan).</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- SWOT -->
+    <section id="swot" class="panel" aria-labelledby="swot-title">
+      <h2 id="swot-title">Analisis SWOT — Refleksi Diri & Proyek</h2>
+
+      <div class="two-col">
+        <div class="section-block">
+          <h3>Strengths (Kekuatan)</h3>
+          <ul>
+            <li>Penguasaan HTML, CSS, dan JavaScript sebagai landasan teknis.</li>
+            <li>Kemampuan implementasi dengan React & Tailwind untuk UI modern.</li>
+            <li>Minat dan pengalaman dalam desain UI/UX — fokus pada pengguna.</li>
+            <li>Pemahaman dasar metodologi Agile untuk kerja tim dan iterasi fitur.</li>
+          </ul>
+        </div>
+
+        <div class="section-block">
+          <h3>Weaknesses (Kelemahan)</h3>
+          <ul>
+            <li>Pengalaman formal dalam usability testing masih terbatas; perlu praktik terstruktur.</li>
+            <li>Manajemen state dan arsitektur front-end skala besar perlu pendalaman lebih lanjut.</li>
+            <li>Kebutuhan koordinasi data publik (izin / akses API) dapat menjadi hambatan.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="two-col" style="margin-top:12px">
+        <div class="section-block">
+          <h3>Opportunities (Peluang)</h3>
+          <ul>
+            <li>Dukungan dari kebijakan keterbukaan informasi dan SPBE memberi peluang implementasi nyata.</li>
+            <li>Kemudahan akses ke library open-source mempercepat prototyping.</li>
+            <li>Permintaan masyarakat terhadap layanan digital yang ramah pengguna meningkat.</li>
+          </ul>
+        </div>
+
+        <div class="section-block">
+          <h3>Threats (Ancaman)</h3>
+          <ul>
+            <li>Perubahan cepat pada framework/toolset berisiko membuat teknologi usang.</li>
+            <li>Persaingan topik skripsi/produk sejenis dari mahasiswa lain.</li>
+            <li>Resiko keamanan (XSS, CSRF, injeksi) yang harus diantisipasi sejak awal desain.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Porter -->
+    <section id="porter" class="panel" aria-labelledby="porter-title">
+      <h2 id="porter-title">Analisis Porter's Five Forces — Lingkungan Kompetitif</h2>
+
+      <div class="section-block">
+        <h3>Ringkasan & Implikasi Strategis</h3>
+        <p>
+          Analisis Porter membantu melihat lingkungan eksternal proyek: siapa yang memengaruhi, siapa pesaingnya,
+          dan risiko pengganti. Untuk proyek bertemakan portal publik, poin utama adalah:
+        </p>
+        <ul>
+          <li><strong>Threat of New Entrants:</strong> Tinggi — banyak mahasiswa & komunitas yang mampu membuat portal sederhana. Implikasi: desain & UX harus menjadi pembeda.</li>
+          <li><strong>Bargaining Power of Suppliers:</strong> Rendah — tools/framework open-source tersedia; namun ketergantungan pada layanan pihak ketiga (mis. API) harus di-manage.</li>
+          <li><strong>Bargaining Power of Buyers (Users):</strong> Tinggi — publik & instansi menuntut performa, aksesibilitas, dan kemudahan penggunaan.</li>
+          <li><strong>Threat of Substitutes:</strong> Sedang — CMS atau media sosial dapat menggantikan fungsi dasar; solusi harus menawarkan nilai tambah (visualisasi, pencarian terstruktur).</li>
+          <li><strong>Industry Rivalry:</strong> Tinggi — banyak proyek dan inisiatif digital di pemerintahan daerah; diferensiasi dan dokumentasi yang baik menjadi kunci.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- SWEBOK separate quick link -->
+    <section id="swebok" class="panel" aria-labelledby="swebok-title">
+      <h2 id="swebok-title">SWEBOK — Ringkasan Teknis</h2>
+      <p>
+        SWEBOK membantu memastikan proyek ini mempunyai pijakan rekayasa: dari requirement hingga quality assurance.
+        Poin-poin terpenting yang akan diaplikasikan dalam skripsi/KP:
+      </p>
+      <ul>
+        <li>Definisi requirement yang jelas (persona, skenario, prioritas fitur).</li>
+        <li>Prototyping berulang: wireframe → hi-fi → validasi pengguna.</li>
+        <li>Kode modular, dokumentasi API, dan testing pipeline sederhana.</li>
+      </ul>
+    </section>
+
+    <!-- Open Source -->
+    <section id="opensource" class="panel" aria-labelledby="oss-title">
+      <h2 id="oss-title">Open Source Philosophy — Praktik & Rekomendasi</h2>
+
+      <div class="section-block">
+        <p>
+          Open source bukan hanya soal lisensi; itu adalah budaya: berbagi pengetahuan, mempercepat inovasi, dan
+          memungkinkan audit publik atas kode. Untuk proyek tugas akademik, mengadopsi praktik open-source memberikan
+          keuntungan nyata: transparansi hasil, peluang kolaborasi, dan portofolio yang dapat dinilai oleh pihak eksternal.
+        </p>
+
+        <h3>Rekomendasi Praktis</h3>
+        <ul>
+          <li><strong>Lisensi:</strong> Gunakan <em>MIT</em> untuk kemudahan reuse, atau <em>Apache 2.0</em> jika butuh proteksi paten.</li>
+          <li><strong>Dokumentasi:</strong> README komprehensif (tujuan, cara menjalankan, arsitektur singkat), CONTRIBUTING.md sederhana, CHANGELOG.</li>
+          <li><strong>Repo hygiene:</strong> .gitignore, struktur folder jelas (src/, public/, docs/), dan contoh data mock untuk demo.</li>
+          <li><strong>Integrasi CI (opsional):</strong> Github Actions untuk build & accessibility checks sederhana.</li>
+        </ul>
+      </div>
+
+      <div class="section-block">
+        <h3>Etika & Keberlanjutan</h3>
+        <p class="muted">
+          Saat membuka kode, pertimbangkan privasi & lisensi data; jangan sertakan data sensitif. Pastikan dokumentasi
+          memuat instruksi perizinan jika proyek ingin diintegrasikan dengan sistem pemerintah.
+        </p>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="panel" aria-labelledby="contact-title">
+      <h2 id="contact-title">Kontak & Penutup</h2>
+      <p>
+        Terima kasih telah membaca rencana dan refleksi saya. Jika Anda ingin berdiskusi, memberikan masukan, silakan hubungi:
+      </p>
+      <p class="muted"><strong>Email:</strong> <a href="mailto:talitha.difa@student.unila.ac.id" class="muted">talithadaliladifa@gmail.com</a></p>
+    </section>
+  </main>
+
+<footer>
+  &copy; 2025 Talitha Dalilah Difa - Teknik Informatika, Universitas Lampung
+</footer>
+
+
+  <script>
+    // Fade-in panels when scrolled into view (IntersectionObserver)
+    document.addEventListener('DOMContentLoaded', () => {
+      const panels = document.querySelectorAll('.panel');
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) entry.target.classList.add('show');
+        });
+      }, { threshold: 0.12 });
+      panels.forEach(p => io.observe(p));
+    });
+
+    // Replace default photo placeholder if image missing: handled via img onerror attribute in markup.
+  </script>
+</body>
+</html>
